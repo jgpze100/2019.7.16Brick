@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     //分數
     public int Gr = 0;
     public int skill = 0;
+    public int Player_HP = 0;
     public int BOSS_HP = 0;
     public int BOSS_Score = 0;
     //第一個磚塊的位置
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
         Score.text = "" + Gr;
         SkillPoint.text = "" + skill;
         BOSS_Score = Gr;
+        print(Player_HP);
         switch (GameStatus)
         {
             case Status.Start:
@@ -90,6 +92,7 @@ public class GameManager : MonoBehaviour
                     Gr = 0;
                     skill = 0;
                     BOSS_HP = 0;
+                    Player_HP = 0;
 
                     Grade.SetActive(true);
                     Skill_A.SetActive(true);
@@ -116,26 +119,26 @@ public class GameManager : MonoBehaviour
                 if (Gr >= 156 && boss == true)
                 {
                     GameStatus = Status.Boss;
+                    boss = false;
                 }
-                if(isdie == true)
+                else if(isdie == true)
                 {
                     GameStatus = Status.dead;
                 }
                 break;
             case Status.Pause:
-                //TODO
-                Debug.Log("Pause");
+                
                 break;
             case Status.dead:
-                die.text = "         系阿啦\n按空白鍵可以重來";
-                if (Input.GetKey(KeyCode.Space) && isdie == true)
+                die.text = "         系阿啦\n按下R鍵可以重來";
+                if (Input.GetKey(KeyCode.R) && isdie == true)
                 {
                     GameStatus = Status.Play;
                     SceneManager.LoadScene(0);
                     isdie = false;
 
                 }
-                GameStatus = Status.Play;
+                
                 break;
             case Status.Boss:
                 if (BOSS_Score >= 156 && boss == true)
@@ -144,6 +147,7 @@ public class GameManager : MonoBehaviour
                     boss = false;
                     
                 }
+
                 if (isdie == true)
                 {
                     GameStatus = Status.dead;

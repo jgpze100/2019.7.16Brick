@@ -25,19 +25,10 @@ public class 左右移動 : MonoBehaviour
 
      void Update()
      {
-        if (GameManager.Instance.GameStatus == GameManager.Status.Play )
-        {
-            Move();
-        }
-        else if (GameManager.Instance.GameStatus == GameManager.Status.Boss)
-        {
-            Move();
-            
-        }
         
 
 
-
+        Move();
         Skill();
        
 
@@ -48,7 +39,7 @@ public class 左右移動 : MonoBehaviour
 
     void Skill()
     {
-        if (Input.GetKey(KeyCode.W) && GameManager.skill >= 10)
+        if (Input.GetKeyDown(KeyCode.W) && GameManager.skill >= 10)
         {
             GameManager.skill -= 10;
             anim.SetBool("scroll", true);
@@ -91,13 +82,14 @@ public class 左右移動 : MonoBehaviour
         }
     }
 
-        /*private void OnCollisionEnter(Collision c)
+   
+    /*private void OnCollisionEnter(Collision c)
+    {
+        if(c.gameObject.tag == "球" )
         {
-            if(c.gameObject.tag == "球" )
-            {
 
 
-            }
-        }*/
-    
+        }
+    }*/
+
 }

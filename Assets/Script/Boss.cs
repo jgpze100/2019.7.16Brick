@@ -34,13 +34,13 @@ public class Boss : MonoBehaviour
 
        
 
-        if (attack == true)
+        if (attack == true && GameManager.Instance.GameStatus == GameManager.Status.Boss)
         {
             Timer += Time.deltaTime;
-           
-        }
+            
 
-        if (Timer >= 5)
+        }
+        if (Timer >= 5 && GameManager.Instance.GameStatus == GameManager.Status.Boss)
         {
             i = Random.Range(1, 3);
             Timer = 0;
@@ -51,46 +51,20 @@ public class Boss : MonoBehaviour
 
 
 
-        /* if (Attack == true)
-         {
-             Invoke("等待執行", 3);
-
-             if (Atk == 1)
-             {
-                 anim.SetBool("attack1", true);
-                 Attack = false;
-             }
-             if (Atk == 2)
-             {
-                 anim.SetBool("attack2", true);
-                 Attack = false;
-             }*/
-
-
-
-
-        /*if( Atk == 0)
-        {
-            anim.SetBool("attack_1", true); 
-            Attack = false;
-        }
-        else
-        {
-            anim.SetBool("attack_1", false);
-        }
-        if()
-        {
-            anim.SetBool("attack_2", true);
-        }
-        else
-        {
-            anim.SetBool("attack_2", false);
-            Attack = false;
-        }*/
-
     }
-        
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("球拍"))
+        {
+            GameManager.Player_HP++;
+            if (GameManager.Player_HP == 5)
+            {
+                GameManager.isdie = true;
+                GameManager.GameStatus = GameManager.Status.dead;
+            }
+        }
     }
+    
+}
     

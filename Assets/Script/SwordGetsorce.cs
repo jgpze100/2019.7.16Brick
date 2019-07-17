@@ -27,7 +27,7 @@ public class SwordGetsorce : MonoBehaviour
         if (c.gameObject.CompareTag("boss"))
         {
             GameManager.BOSS_HP++;
-            if (GameManager.BOSS_HP == 15)
+            if (GameManager.BOSS_HP == 30)
             {
                 GameManager.bossisdie = true;
             }

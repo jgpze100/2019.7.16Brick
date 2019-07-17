@@ -5,22 +5,15 @@ using UnityEngine.UI;
 
 public class 被球打到 : MonoBehaviour
 {
+    bool BP;
     int HP = 0;
     GameManager GameManager;
 
     void Start()
     {
         GameManager = GameObject.Find("GM").GetComponent<GameManager>();
-        /*int brick = Random.Range(0, 4);
-        switch(brick)
-        {
-            default:
-                break;
-            case 3:
-                 gameObject.SetActive(false);
-                break;
-
-        }*/
+        BP = true;
+       
     }
 
 
@@ -32,12 +25,13 @@ public class 被球打到 : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.Gr += 3;
             GameManager.boss = true;
-            GameManager.GameStatus = GameManager.Status.Boss;
+            
         }
-        if (GameManager.Gr >= 156)
+        if (GameManager.Gr >= 156 && BP == true)
         {
             GameManager.boss = true;
-            GameManager.GameStatus = GameManager.Status.Boss;
+            
+            BP = false;
         }
     }
 
